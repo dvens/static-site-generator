@@ -124,4 +124,13 @@ dest.styleguide = {
     src: `${dest.assets.src}/styleguide`
 }
 
+
+/*
+ * Config copy files/directories
+ * =============================
+ */
+config.copy = [
+    {   src: `${source.root.src}/assets/fonts/**`,  dest: `${dest.root.src}/fonts` }
+];
+
 export default config;

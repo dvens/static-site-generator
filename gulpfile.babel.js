@@ -29,7 +29,6 @@ config.sourcemaps       = true;
 config.minifyCss        = true;
 config.minifyHtml       = false;
 
-
 /*
  * @task default
  * ============
@@ -69,7 +68,7 @@ gulp.task( 'build', function ( callback ) {
 
     runSequence(
         'clean',
-        ['images', 'svg'],
+        ['copy', 'images', 'svg'],
         ['html', 'js', 'css'],
         'styleguide',
         callback
@@ -86,7 +85,7 @@ gulp.task( 'dist', function ( callback ) {
 
     runSequence(
         'clean',
-        ['images', 'svg'],
+        ['copy','images', 'svg'],
         ['html', 'js', 'css'],
         callback
     );
