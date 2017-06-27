@@ -1,0 +1,11 @@
+@mixin font-face($family, $file, $weight: 400, $style: normal) {
+	@font-face {
+		font-family: $family;
+		font-style: $style;
+		font-weight: $weight;
+		src: url('#{$font-folder}#{$file}.eot');
+		src: url('#{$font-folder}#{$file}.eot?#iefix') format('embedded-opentype'),
+			 url('#{$font-folder}#{$file}.woff') format('woff'),
+			 url('#{$font-folder}#{$file}.ttf') format('truetype');
+	}
+}

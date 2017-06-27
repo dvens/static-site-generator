@@ -1,0 +1,16 @@
+{% extends '../_overview/layout.html' %}
+
+{% block content %}
+
+    <section class="project__overview">
+        <ul class="project__overview-list">
+            {% for page in templates.index.pages %}
+                <li>
+                    <a class="project__overview-button" href="{{ page.url }}" target="_blank">{{ page.title }}</a>
+                </li>
+            {% endfor %}
+        </ul>
+
+    </section>
+
+{% endblock %}

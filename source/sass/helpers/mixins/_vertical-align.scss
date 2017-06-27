@@ -1,0 +1,15 @@
+// Vertical align an element - https://css-tricks.com/centering-in-the-unknown/
+@mixin vertical-align($element, $align: middle) {
+	&:before {
+		content: '';
+		display: inline-block;
+		height: 100%;
+		margin-left: -4px;
+		vertical-align: $align;
+	}
+
+	> #{$element} {
+		display: inline-block !important;
+		vertical-align: $align;
+	}
+}

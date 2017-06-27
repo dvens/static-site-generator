@@ -1,0 +1,151 @@
+.sg {
+    .sg-header {
+        background: $styleguideHighlight;
+        position: relative;
+        text-align: center;
+        width: 100%;
+        z-index: 9999;
+        box-shadow: 0 4px 4px rgba(0, 0, 0, 0.2);
+
+        .sg-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 0;
+        }
+
+        .sg-title h1 {
+            align-items: center;
+            display: flex;
+            justify-content: center;
+            font-weight: bold;
+            width: 100%;
+        }
+
+        &.designerToolVisible {
+            .sg-inner {
+                margin-right: 0;
+            }
+        }
+
+        @media only screen and ( min-width: 48em ) {
+            position: fixed;
+            width: $styleguideNavigationWidth;
+        }
+    }
+
+    .sg-wrapper {
+        
+        .sg.sg-side-nav {
+            background-color: $styleguideColor;
+            bottom: 0;
+            height: calc(100% - 134px);
+            left: 0;
+            position: fixed;
+            width: $styleguideNavigationWidth;
+            z-index: 9998;
+
+            .sg-nav-section li {
+                background-color: transparent;
+                border-color: transparent;
+            }
+
+            .sg-nav-section > li {
+                margin-left: 1rem;
+                margin-bottom: 1rem;
+            }
+
+            .sg-nav-section > li > a {
+                position: relative;
+                margin-bottom: 1em;
+                padding: 1em 0.5em;
+
+                &:after {
+                    background-color: $styleguideNavFontColor;
+                    content: "";
+                    height: 1px;
+                    left: 0.5em;
+                    position: absolute;
+                    width: calc(100% - 2em); 
+                }
+
+                &:before {
+                    left: -0.3em;
+                }
+
+                &.active,
+                &:hover {
+                    background-color: rgba(0, 0, 0, 0.2);
+
+                    &:before {
+                        background: $styleguideSearchColor;
+                    }
+                }
+            }
+
+        }
+
+        .sg.side-nav-toggle {
+            display: none;
+        }
+
+        .sg.sg-nav-link {
+            color: #eee9f6;
+            font-weight: bold;
+            padding: 0.5em;
+            text-transform: uppercase;
+
+            &.active,
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.2);
+            }
+        }
+
+        .sg.sg-side-nav {
+
+            .sg-nav-subsection li a {
+                color: $styleguideNavFontColor;
+                font-weight: normal;
+                text-transform: lowercase;
+
+                &:first-letter {
+                    text-transform: uppercase;
+                }
+            }
+
+            .sg-nav-subsection {
+                padding-left: 0;
+                display: none;
+
+                &.ng-hide {
+                    display: block !important;   
+                }
+            }
+
+            .sg-nav-subsection li {
+                margin-left: 0.6em;
+            }
+
+        }
+        
+    }
+
+    .sg-search-container {
+        background-color: $styleguideSearchColor;
+        display: flex;
+        width: 100%;
+
+        .sg-search-field {
+            margin: 1em !important;
+            width: 100%;
+        }
+
+        .sg-hamburger {
+            padding-top: 0.875em !important;
+            padding-left: 0.5em;
+            padding-bottom: 0 !important;
+            transform: scale(0.6);
+        }
+    }
+    
+}

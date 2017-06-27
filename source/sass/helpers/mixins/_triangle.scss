@@ -1,0 +1,36 @@
+// CSS triangles
+@mixin triangle($placement, $size, $color) {
+	position: relative;
+
+	&:after {
+		border: $size transparent solid;
+		content: '';
+		height: 0;
+		position: absolute;
+		width: 0;
+
+		@if ($placement == top) {
+			border-bottom-color: $color;
+			bottom: 100%;
+			left: calc(50% - #{$size});
+		}
+
+		@else if ($placement == right) {
+			border-left-color: $color;
+			left: 100%;
+			top: calc(50% - #{$size});
+		}
+
+		@else if ($placement == bottom) {
+			border-top-color: $color;
+			left: calc(50% - #{$size});
+			top: 100%;
+		}
+
+		@else if ($placement == left) {
+			border-right-color: $color;
+			right: 100%;
+			top: calc(50% - #{$size});
+		}
+	}
+}

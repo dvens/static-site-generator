@@ -1,0 +1,42 @@
+// Colors and typography
+//
+// This is colors and typography
+//
+// Styleguide 3.0
+
+// Colors
+//
+//  Bring better name for button.less file, as button says kind of atomic element, but it has icon and label.
+//
+// $color-gray-light - Primary color
+// $$color-gray-dark - Secondary color
+// $color-red - Primary button color
+// $color-blue - Default button color and link color
+// $color-orange-dark - Used for input hovers and hilights
+//
+// markup:
+// <div style="background: {$modifiers};" class="styleguide-color">{$modifiers}</div>
+//
+// Styleguide 3.1
+
+$color-background: #ffffff;
+$color-white: #ffffff;
+$color-gray-light: #efefef;
+$color-gray: #333333;
+$color-gray-dark: #7d7d7d;
+$color-gray-darker: #272e34;
+$color-gray-darkest: #2b3238;
+$color-black: #000000;
+$color-red: #ff0000;
+$color-red-dark: #a70f00;
+$color-orange: #f7941c;
+$color-orange-dark: #dd841a;
+$color-green: #3dbc91;
+$color-green-dark: #1eac59;
+$color-blue-light: #88cce5;
+$color-blue: #3888c5;
+$color-blue-dark: #327ab1;
+$color-blue-darkest: #00769D;
+$color-bluegray: #707f95;
+$color-bluegray-dark: #354a58;
+$color-bluegray-light: #c5c9d3;

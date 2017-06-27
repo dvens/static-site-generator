@@ -1,0 +1,35 @@
+/*
+Headings
+
+These are our headings
+
+markup:
+<h1>Heading 1</h1>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque massa ipsum, tincidunt vel convallis in, suscipit et risus. Morbi erat dolor, mattis at dignissim sed, feugiat sed lorem.
+<h2>Heading 2</h2>
+<p>Mauris feugiat suscipit turpis, ut rhoncus lectus finibus sed. Etiam suscipit consectetur eros vitae venenatis.</p>
+<h3>Heading 3</h3>
+<p>Ut leo ipsum, tincidunt vel mauris eget, convallis egestas justo. Nunc ligula neque, porta ac lorem id, ultrices dapibus dolor.</p>
+
+Styleguide 3.2
+*/
+
+h1, 
+h2,
+h3,
+p {
+    font-family: $font-primary;
+    margin-bottom: 1em;
+}
+
+h1 {
+  font-size: $font-size-lg;
+}
+
+h2 {
+  font-size: $font-size-sm;
+}
+
+h3 {
+  font-size: $font-size-xs;
+}

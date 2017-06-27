@@ -1,0 +1,13 @@
+{ 
+    "pages": [
+        {
+            "title": "Home",
+            "url": "/home.html"
+        },
+
+        {
+            "title": "Styleguide",
+            "url": "http://localhost:8001"
+        }
+    ]
+}

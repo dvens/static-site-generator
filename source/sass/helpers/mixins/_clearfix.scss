@@ -1,0 +1,8 @@
+// Clear floats easily - http://nicolasgallagher.com/micro-clearfix-hack/
+@mixin clearfix() {
+	&:after {
+		clear: both;
+		content: '';
+		display: table;
+	}
+}

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html class="no-js">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+
+    <meta name="author" content="{{ site.author }}">
+    <meta name="description" content="{{ site.description }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>{{ site.title }} | {{ title }}</title>
+
+    <!-- Style sheets -->
+    <link rel="stylesheet" href="./css/main.css"/>
+
+</head>
+
+<body {% if page %} class="t-{{ page }} js-{{ page }}" {% endif %} >
+
+    {% include '../organisms/header.html' %}
+
+    <main role="main">
+
+        {% block content %}{% endblock %}
+
+    </main>
+
+    {% include '../organisms/footer.html' %}
+
+    <script src="{% if base %}{{ base }}{% else %}.{% endif %}/js/main.js"></script>
+
+</body>
+
+</html>

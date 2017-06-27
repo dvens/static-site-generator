@@ -1,0 +1,56 @@
+// Text input fields
+//
+//  This is an overview of input fields
+//
+// .input--default - Input default styling
+//
+// markup:
+// <label class="input {$modifiers}">
+// 	<span>Input name:</span>
+// 	<input id="username" type="text" required="" placeholder="{$modifiers}">
+// 	<div></div>
+// </label>
+//
+// Styleguide 2.3
+
+/* button default */
+
+.input {
+    display: block;
+	color: $color-black;
+	position: relative;
+
+	&--default {
+		span {
+			display: block;
+			font-size: 0.9em;
+			margin-bottom: 0.5em;
+		}
+
+		input {
+			border: 1px solid #eee;
+	    	box-shadow: 1px 1px 1px rgba(0,0,0,.1) inset;
+	    	height: 3.333em;
+	    	font-size: 0.9375em;
+	    	width: 100%;
+	    	outline: none;
+	    	padding: 0.625em 3.75em 0.625em 1.25em;
+	    	position: relative;
+	    	-webkit-appearance: none;
+			
+			&:focus ~ div {
+				width: 100%;
+			}
+
+		}
+
+		div {
+			background-color: $color-red;
+			height: 3px;
+			left: 0px;
+			position: absolute;
+			transition: all .2s ease-in;
+			width: 0;
+		}
+	}
+}

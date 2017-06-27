@@ -1,0 +1,120 @@
+// Buttons and inputs
+//
+// This is stackoverflow buttons.
+//
+// Styleguide 2.0
+
+// Default buttons
+//
+//  Bring better name for button.less file, as button says kind of atomic element, but it has icon and label.
+//
+// .button--default - Default button styling
+//
+// markup:
+// <button class="button {$modifiers}"> Button {$modifiers} </button>
+//
+// Styleguide 2.1
+
+/* button default */
+.button {
+	background-color: $color-gray-light;
+	border: none;
+	border-radius: 4px;
+	color: $color-black;
+	display: block;
+	outline: none;
+	padding: 1em 1.2em;
+	position: relative;
+	text-decoration: none;
+	transition: all .2s ease-in;
+	z-index: 1;
+
+	&--default {
+		&:hover,
+		&:focus {
+			color: $color-white;
+			background-color: $color-red;
+		}
+	}
+
+}
+
+// Sliding buttons
+//
+//  Bring better name for button.less file, as button says kind of atomic element, but it has icon and label.
+//
+// .button-slide - Sliding button
+// .button-slide--up - Sliding up animation
+// .button-slide--right - Sliding right animation
+// .button-slide--left - Sliding left animation
+//
+// markup:
+// <button class="button button-slide {$modifiers}"> Button {$modifiers} </button>
+//
+// Styleguide 2.2
+.button-slide {
+
+	overflow: hidden;
+
+	&:hover,
+	&:focus {
+
+		color: $color-white;
+
+		&:before {
+			height: 100%;
+		}
+
+	}
+	
+	&:before {
+		background-color: $color-red;
+		content: "";
+		height: 0;
+		left: 0;
+		position: absolute;
+		transition: all .2s ease-in;
+		top: 0;
+		width: 100%;
+		z-index: -1;
+	}
+
+	&--up {
+		&:before {
+			top: initial;
+			bottom: 0;
+		}
+	}
+
+	&--right {
+		
+		&:hover,
+		&:focus {
+			&:before {
+				width: 100%;
+			}
+		}
+
+		&:before {
+			height: 100%;
+			width: 0;
+		}
+	}
+
+	&--left {
+		&:hover,
+		&:focus {
+			&:before {
+				width: 100%;
+			}
+		}
+
+		&:before {
+			height: 100%;
+			left: initial;
+			right: 0;
+			width: 0;
+		}
+	}
+
+}

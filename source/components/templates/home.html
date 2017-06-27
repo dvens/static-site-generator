@@ -1,0 +1,13 @@
+{% extends '../base/layout.html' %}
+
+{% set title = templates.home.title %}
+{% set page = 'example' %}
+
+{% block content %}
+
+    <h1>{{ templates.home.title }}</h1>
+    <p>{{ templates.home.subtitle }}</p>
+
+    {% atom button( { title: 'test' } ) %}
+
+{% endblock %}

@@ -1,0 +1,64 @@
+.project__overview {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 5em;
+    width: 100vw;
+
+    &-title {
+        color: $styleguideColor;
+        font-size: 2.5rem;
+        font-weight: 900;
+        text-align: center;
+        margin-bottom: 1.875em;
+    }
+
+    &-list {
+        list-style: none;
+
+        li {
+            margin-bottom: 0.5em;
+        }
+
+        a {
+            display: inline-block;
+        }
+    }
+
+    &-button {
+        background-color: $styleguideColor;
+        box-shadow: 1px 1px 3px 1px rgba(0, 0, 0, 0.2);
+        border: none;
+        border-radius: 3px;
+        color: white;
+        display: block;
+        outline: none;
+        overflow: hidden;
+        padding: 0.3em 0.8em;
+        position: relative;
+        text-decoration: none;
+        z-index: 1;
+        width: 100%;
+        text-align: center;
+        
+        &:before {
+            background-color: $styleguideHighlight;
+            content: "";
+            height: 100%;
+            left: 0;
+            position: absolute;
+            transition: all .2s ease-in;
+            top: 0;
+            width: 0;
+            z-index: -1;
+        }
+
+        &:hover,
+        &:focus {
+            &:before {
+                width: 100%;
+            }
+        }
+    }
+}
