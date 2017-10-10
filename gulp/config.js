@@ -51,7 +51,8 @@ source.assets = {
 
 source.html = { 
     src: `${source.root.src}/components`, 
-    files: '*.html'
+    files: '*.html',
+    excludes: []
 };
 
 source.css = { 
