@@ -29,3 +29,5 @@ export function extractDependencies(expression) {
 
     return dependencies;
 }
+
+//https://github.com/yoajs/yoa/blob/05da538dcfa7319175caed112b8f18d6f05f277f/src/directives/index.js
