@@ -1,9 +1,3 @@
-export function format(name, separator) {
-    const RE = /([a-z]|(?:[A-Z0-9]+))([A-Z0-9]|$)/g;
-
-    return name.replace(RE, (_, $1, $2) => $1 + ($2 && (separator || '-') + $2)).toLowerCase();
-}
-
 export function each(items, callback) {
     let len, i = 0;
 
@@ -38,24 +32,4 @@ export function type(object) {
         :
         typeof object
     );
-}
-
-export function isPlainObject(object) {
-    const class2type = {};
-    const toString = class2type.toString;
-    const hasOwn = class2type.hasOwnProperty;
-    const fnToString = hasOwn.toString;
-    const ObjectFunctionString = fnToString.call(Object);
-
-    let prototype, ctor;
-
-    if (!object || toString.call(object) !== '[object Object]') return false;
-
-    prototype = Object.getPrototypeOf(object);
-
-    if (!prototype) return true;
-
-    ctor = hasOwn.call(prototype, 'constructor') && prototype.constructor;
-
-    return typeof ctor === 'function' && fnToString.call( ctor ) === ObjectFunctionString;
 }
