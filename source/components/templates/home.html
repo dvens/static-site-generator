@@ -8,6 +8,21 @@
     <h1>{{ templates.home.title }}</h1>
     <p>{{ templates.home.subtitle }}</p>
 
+    <div class="app">
+        <div :if="1 + 1 === 4">
+            <div :class="{success: isActive, error: 1+1==2}">aaa</div>
+            <div :class="[{success: isError}, {error: !isError}]">bbb</div>
+            <div :attribute="aaa" :bind="name">bbb</div>
+        </div>
+
+        <div :style="{color: activeColor, fontSize: size}">测试一下style指令的对象写法</div>
+
+        <ul>
+            <li :each="comment in comments">{{ comment.content }}</li>
+            <li :each="comments" data-index="{{ index }}">{{ item.content }}</li>
+        </ul>
+    </div>
+
     {% atom button( { title: 'test' } ) %}
 
 {% endblock %}

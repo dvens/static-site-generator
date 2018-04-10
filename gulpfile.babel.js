@@ -70,7 +70,6 @@ gulp.task( 'build', function ( callback ) {
         'clean',
         ['copy', 'images', 'svg'],
         ['html', 'js', 'css'],
-        'styleguide',
         callback
     );
     

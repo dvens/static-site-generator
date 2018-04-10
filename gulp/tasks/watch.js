@@ -28,7 +28,7 @@ gulp.task('watch', ['js:watch'], () => {
 
     watch( concatPath.get(config, 'source', 'css', '**/*.scss') , () => {
         runTask('css');
-        runTask('styleguide');
+        //runTask('styleguide');
     });
 
     watch( concatPath.get(config, 'source', 'html', '**') , () => {
