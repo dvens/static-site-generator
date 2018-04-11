@@ -21,36 +21,9 @@ export default function Compile(template, options = {}) {
 
     console.log( options );
 
-    var slice = Array.prototype.slice
-
-function iterativelyWalk(nodes, cb) {
-    if (!('length' in nodes)) {
-        nodes = [nodes]
-    }
-    
-    nodes = slice.call(nodes)
-
-    while(nodes.length) {
-        var node = nodes.shift(),
-            ret = cb(node)
-
-        if (ret) {
-            return ret
-        }
-
-        if (node.childNodes && node.childNodes.length) {
-            nodes = slice.call(node.childNodes).concat(nodes)
-        }
-    }
-}
-
     this.options = options;
     this.data = this.options.data;
     template = this.options.template;
-
-    iterativelyWalk( template.childNodes ,( node ) => {
-        console.log( node )
-    })
 
     walk(template, (node, next) => {
 
