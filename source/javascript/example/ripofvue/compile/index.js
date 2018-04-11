@@ -2,9 +2,9 @@ import walk from './walk';
 import parse from './parse';
 import domify from './domify';
 import defaults from './defaults';
-import extend from '../common/extend';
+// import extend from '../common/extend';
 import configure from '../configure';
-import Directive from '../directive';
+// import Directive from '../directive';
 import { hasInterpolation } from './utils';
 
 export default function Compile(template, options = {}) {
@@ -19,11 +19,42 @@ export default function Compile(template, options = {}) {
         options = template;
     }
 
-    this.options = extend(true, defaults, options);
+    console.log( options );
+
+    var slice = Array.prototype.slice
+
+function iterativelyWalk(nodes, cb) {
+    if (!('length' in nodes)) {
+        nodes = [nodes]
+    }
+    
+    nodes = slice.call(nodes)
+
+    while(nodes.length) {
+        var node = nodes.shift(),
+            ret = cb(node)
+
+        if (ret) {
+            return ret
+        }
+
+        if (node.childNodes && node.childNodes.length) {
+            nodes = slice.call(node.childNodes).concat(nodes)
+        }
+    }
+}
+
+    this.options = options;
     this.data = this.options.data;
     template = this.options.template;
 
+    iterativelyWalk( template.childNodes ,( node ) => {
+        console.log( node )
+    })
+
     walk(template, (node, next) => {
+
+        //console.log( node, next )
         if (node.nodeType === 1) {
             const skip = this.compile.elementNodes.call(this, node);
             return next(skip === false);
@@ -33,8 +64,8 @@ export default function Compile(template, options = {}) {
         next();
     });
 
-    this.view = template;
-    template = null;
+    // this.view = template;
+    // template = null;
 }
 
 Compile.prototype.compile = {};
@@ -46,6 +77,8 @@ Compile.prototype.compile = {};
  * @return {Void|Boolean}
  */
 Compile.prototype.compile.elementNodes = function (node) {
+
+    console.log( node );
     let attributes = [].slice.call(node.attributes),
         attrName = ``,
         attrValue = ``,

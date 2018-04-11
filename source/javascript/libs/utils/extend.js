@@ -1,26 +1,29 @@
-const extend = ( out = {} ) =>  {
-  
-    for ( var i = 1, len = arguments.length; i < len; ++i ) {
-      var obj = arguments[i];
-  
-      if (!obj) {
-        continue;
-      }
-  
-      for (var key in obj) {
-        if (!obj.hasOwnProperty(key)) {
-          continue;
+/**
+ * Deep object extending
+ * https://stackoverflow.com/questions/14843815/recursive-deep-extend-assign-in-underscore-js
+ * @function 
+ * @returns { obj } 
+ */
+const deepObjectExtend = ( target, source ) => {
+    
+    for ( let prop in source ) {
+        
+        if (source.hasOwnProperty(prop)) {
+            
+            if ( target[prop] && typeof source[prop] === 'object' ) {
+                
+                deepObjectExtend( target[prop], source[prop] );
+
+            } else {
+
+                target[prop] = source[prop];
+          
+            }
         }
-  
-        // based on https://javascriptweblog.wordpress.com/2011/08/08/fixing-the-javascript-typeof-operator/
-        if (Object.prototype.toString.call(obj[key]) === '[object Object]') {
-          out[key] = deepExtend(out[key], obj[key]);
-          continue;
-        }
-  
-        out[key] = obj[key];
-      }
     }
-  
-    return out;
-};
+
+    return target;
+
+}
+
+export default deepObjectExtend;

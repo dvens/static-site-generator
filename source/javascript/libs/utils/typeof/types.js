@@ -18,10 +18,21 @@ const list = [
     'Promise',
     'Error'
 ];
-  
-export const strings = {}
-  
-for (let type of list) {
-    strings['[object ' + type + ']'] = type
 
-  }
+/**
+ * @function 
+ * @returns { obj } of types
+ */
+function generateTypesObject() {
+
+    const obj = {};
+
+    for (let type of list) {
+        obj[`[object ${type}]`] = type;
+    }
+
+    return obj;
+
+}
+
+export const strings = generateTypesObject();

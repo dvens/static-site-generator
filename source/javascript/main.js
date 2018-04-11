@@ -1,10 +1,6 @@
 'use strict';
 
-// Import initializer
-import initializer from './utils/initializer';
-
-// Import atoms, molecules and organisms
-import example from './atoms/example';
+import Templatizer from './libs';
 
 export default class main {
     
@@ -14,7 +10,34 @@ export default class main {
      * @static
      */
     static init() {
-        initializer.init('.js-example', example);
+    
+        const data = {
+            user: {
+                avatar: `./images/avatar.jpg`,
+                firstName: `Just`,
+                lastName: `Me`,
+            },
+            moments: [{
+                content: `Hello World.`,
+                show: true,
+            }, {
+                content: `Hello World.`,
+                show: false,
+            }, {
+                content: `Hello World.`,
+                show: true,
+            }],
+        };
+
+        const products = new Templatizer({
+            el: '.app',
+            data,
+            computed: {
+                fullName() {
+                    return this.user.firstName + this.user.lastName;
+                }
+            }
+        });
     }
 }
 

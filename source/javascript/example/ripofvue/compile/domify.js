@@ -4,10 +4,16 @@
  * @param {String} DOMString
  * @return {DOM}
  */
-export default function domify(DOMString) {
-    const html = document.implementation.createHTMLDocument();
 
-    html.body.innerHTML = DOMString;
+let doc; 
 
-    return html.body.children;
+export default function domify( html ) {
+    
+    if (!doc) {
+        doc = document.implementation.createHTMLDocument('');
+    }
+
+    doc.body.innerHTML = html;
+    return doc.body.children;
+    
 }
