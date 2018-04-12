@@ -4,7 +4,7 @@
  * @param {Function} fn 
  * @param {Object} ctx 
  */
-function object(obj, fn, ctx) {
+function object( obj, fn, ctx ) {
     
     for ( let key in obj ) {
         

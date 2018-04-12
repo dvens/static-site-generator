@@ -1,7 +1,6 @@
 import { compileTemplate } from './template';
 import { generate as generateCode } from './codegen';
 import { error, noop, arrayDistinct } from '../util/util';
-import { processDirectives, preTransformDirectives } from '../directives/index';
 
 const globals = ['true', 'false', 'undefined', 'null', 'NaN', 'typeof', 'in'];
 const SVG_ELEMENTS = ['svg','animate','circle','clippath','cursor','defs','desc','ellipse','filter','font-face','foreignObject','g','glyph','image','line','marker','mask','missing-glyph','path','pattern','polygon','polyline','rect','switch','symbol','text','textpath','tspan','use','view'];
