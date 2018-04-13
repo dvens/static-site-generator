@@ -3,14 +3,14 @@
 import Templatizer from './libs';
 
 export default class main {
-    
+
     /**
      * Launches the modules
      * @method init
      * @static
      */
     static init() {
-    
+
         const data = {
             user: {
                 avatar: `./images/avatar.jpg`,
@@ -38,6 +38,8 @@ export default class main {
                 }
             }
         });
+
+        console.log( products );
     }
 }
 

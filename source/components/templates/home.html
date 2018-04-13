@@ -5,8 +5,7 @@
 
 {% block content %}
 
-    <h1>{{ templates.home.title }}</h1>
-    <p>{{ templates.home.subtitle }}</p>
+    <h1>Woonenergie product test</h1>
 
     <div class="app">
         <div :if="1 + 1 === 4">
@@ -15,14 +14,12 @@
             <div :attribute="aaa" :bind="name">bbb</div>
         </div>
 
-        <div :style="{color: activeColor, fontSize: size}">测试一下style指令的对象写法</div>
+        <div :style="{color: activeColor, fontSize: size}">style</div>
 
         <ul>
             <li :each="comment in comments">{{ comment.content }}</li>
             <li :each="comments" data-index="{{ index }}">{{ item.content }}</li>
         </ul>
     </div>
-
-    {% atom button( { title: 'test' } ) %}
 
 {% endblock %}
