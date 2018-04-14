@@ -1,20 +1,16 @@
 import typeOf from '../utils/typeof';
 
-function initializeData( component, data ) {
-
-    component.$data = data;
-
-}
-
 function intializeComputed( component, computed ) {
+
+    const options = component.$options;
 
     for( const key in computed ) {
 
         const userDefinition = computed[key];
         const getter = typeOf( userDefinition ) === 'Function' ? userDefinition : userDefinition.get;
 
-        if( !( key in component.$data ) ) {
-            
+        if( !( key in options.data ) ) {
+
             createComputedSetterGetter( component, key, getter, false );
 
         } else {
@@ -34,15 +30,13 @@ function createComputedSetterGetter( target, key, getter, setter ) {
     if( getter ) descriptor.get = getter;
     if( setter ) descriptor.set = setter;
 
-    Object.defineProperty( target.$data, key, descriptor );
+    Object.defineProperty( target.$options.data, key, descriptor );
 
 }
 
 export function initializeState( component ) {
 
     const options = component.$options;
-
-    if( options.data ) initializeData( component, options.data );
     if( options.computed ) intializeComputed( component, options.computed );
 
 }

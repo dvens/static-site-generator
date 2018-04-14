@@ -1,10 +1,11 @@
-import Compile from '../compile';
+import { initCompiler } from '../compile/';
+import typeOf from '../utils/typeof';
 
 export function initializeRender( component ) {
 
     const el = component.$options.el;
 
-    component.$compile = Compile;
-    component.$template = typeof el === 'string' ? document.querySelector(el) : el;
+    component.$compile = initCompiler;
+    component.$view = initCompiler( component );
 
 }
