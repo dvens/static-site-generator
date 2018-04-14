@@ -1,6 +1,7 @@
 'use strict';
 
 import Templatizer from './libs';
+import colon from './example/src';
 
 export default class main {
     
@@ -11,33 +12,63 @@ export default class main {
      */
     static init() {
     
-        const data = {
-            user: {
-                avatar: `./images/avatar.jpg`,
-                firstName: `Just`,
-                lastName: `Me`,
-            },
-            moments: [{
-                content: `Hello World.`,
-                show: true,
-            }, {
-                content: `Hello World.`,
-                show: false,
-            }, {
-                content: `Hello World.`,
-                show: true,
-            }],
-        };
+        // const data = {
+        //     user: {
+        //         avatar: `./images/avatar.jpg`,
+        //         firstName: `Just`,
+        //         lastName: `Me`,
+        //     },
+        //     moments: [{
+        //         content: `Hello World.`,
+        //         show: true,
+        //     }, {
+        //         content: `Hello World.`,
+        //         show: false,
+        //     }, {
+        //         content: `Hello World.`,
+        //         show: true,
+        //     }],
+        // };
 
-        const products = new Templatizer({
-            el: '.app',
-            data,
-            computed: {
-                fullName() {
-                    return this.user.firstName + this.user.lastName;
-                }
-            }
-        });
+        // const products = new Templatizer({
+        //     el: '.app',
+        //     data,
+        //     computed: {
+        //         fullName() {
+        //             return this.user.firstName + this.user.lastName;
+        //         }
+        //     }
+        // });
+
+        
+
+const data = {
+    user: {
+        avatar: `./images/avatar.jpg`,
+        firstName: `Just`,
+        lastName: `Me`,
+    },
+    moments: [{
+        content: `Hello World.`,
+        show: true,
+    }, {
+        content: `Hello World.`,
+        show: false,
+    }, {
+        content: `Hello World.`,
+        show: true,
+    }],
+};
+
+colon({
+    template: document.querySelector('.app'),
+    data,
+    computed: {
+        fullName() {
+            return this.user.firstName + this.user.lastName;
+        },
+    },
+});
     }
 }
 

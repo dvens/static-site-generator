@@ -9,17 +9,17 @@
     <p>{{ templates.home.subtitle }}</p>
 
     <div class="app">
-        <div :if="1 + 1 === 4">
-            <div :class="{success: isActive, error: 1+1==2}">aaa</div>
-            <div :class="[{success: isError}, {error: !isError}]">bbb</div>
-            <div :attribute="aaa" :bind="name">bbb</div>
+        <div class="profile">
+            <div class="avatar">
+                <img :src="user.avatar" alt="{{ user.firstName }}">
+            </div>
+            <p><span :text="fullName"></span></p>
         </div>
-
-        <div :style="{color: activeColor, fontSize: size}">测试一下style指令的对象写法</div>
-
-        <ul>
-            <li :each="comment in comments">{{ comment.content }}</li>
-            <li :each="comments" data-index="{{ index }}">{{ item.content }}</li>
+        <ul class="moments" :if="moments.length">
+            <li :each="moment in moments" :show="moment.show">
+                {{ moment.content }}
+                <p><span :text="fullName"></span></p>
+            </li>
         </ul>
     </div>
 
