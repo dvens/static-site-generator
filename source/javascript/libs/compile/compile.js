@@ -1,5 +1,5 @@
 class Compile {
-    constructor( ) {
+    constructor( component ) {
 
     }
 }

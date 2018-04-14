@@ -30,7 +30,7 @@ export default class main {
         };
 
         const products = new Templatizer({
-            el: '.app',
+            el: document.querySelector( '.app' ),
             data,
             computed: {
                 fullName() {
