@@ -23,12 +23,14 @@ export default function Compile(template, options = {}) {
     this.data = this.options.data;
     template = this.options.template;
 
-    walk(template, (node) => {
+    walk(template, (node, next) => {
         if (node.nodeType === 1) {
             const skip = this.compile.elementNodes.call(this, node);
+            return next(skip === false);
         } else if (node.nodeType === 3) {
             this.compile.textNodes.call(this, node);
         }
+        next();
     });
 
     this.view = template;

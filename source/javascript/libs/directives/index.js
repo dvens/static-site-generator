@@ -18,9 +18,11 @@ const directives = {
     attribute,
 };
 
+import { generate } from '../compile/generate';
+
 export default class Directive {
     
-    constructor(options = {}) {
+    constructor(options = {}, data ) {
         
         if ( options.name === 'if' ) options.name = `IF`;
         if ( options.name === 'class' ) options.name = `clus`;
@@ -29,8 +31,10 @@ export default class Directive {
         Object.assign(this, options);
         Object.assign(this, directives[this.name]);
 
-        this.bind && this.bind();
-        // this.update && this.update( generate( this.expression )(this.compile.data) );
+        console.log( this );
+
+        // this.bind && this.bind();
+        // this.update && this.update( generate( this.value )( data ) );
     }
 
 }

@@ -1,24 +1,20 @@
-var slice = Array.prototype.slice
+/**
+ * walk dom element
+ *
+ * @param {DOM}   el
+ * @param {Function}   action
+ * @param {Function} done
+ */
+export default function walk(el, action, done) {
+    const nodes = el.childNodes && [].slice.call(el.childNodes);
 
-function walk(nodes, cb) {
-    if (!('length' in nodes)) {
-        nodes = [nodes]
+    done = done || function () {};
+    action = action || function () {};
+
+    function next(skip) {
+        if (skip || nodes.length === 0) return done();
+        walk(nodes.shift(), action, next);
     }
-    
-    nodes = slice.call(nodes)
 
-    while(nodes.length) {
-        var node = nodes.shift(),
-            ret = cb(node)
-
-        if (ret) {
-            return ret
-        }
-
-        if (node.childNodes && node.childNodes.length) {
-            nodes = slice.call(node.childNodes).concat(nodes)
-        }
-    }
+    action(el, next);
 }
-
-export default walk;

@@ -1,7 +1,7 @@
 'use strict';
 
 import Ornn from './libs';
-// import colon from './example/src';
+import colon from './example/src';
 
 export default class main {
 
@@ -31,15 +31,15 @@ export default class main {
             }],
         };
 
-        // colon({
-        //     template: document.querySelector('.app'),
-        //     data,
-        //     computed: {
-        //         fullName() {
-        //             return this.user.firstName + this.user.lastName;
-        //         },
-        //     },
-        // });
+        colon({
+            template: document.querySelector('.app2'),
+            data,
+            computed: {
+                fullName() {
+                    return this.user.firstName + this.user.lastName;
+                },
+            },
+        });
 
         const products = new Ornn({
             el: document.querySelector( '.app' ),

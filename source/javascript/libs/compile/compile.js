@@ -15,6 +15,8 @@ import {
 const isElementNode = ( node ) => node.nodeType === 1;
 const isTextNode = ( node ) => node.nodeType === 3;
 
+const priorities = ['for'];
+
 class Compiler {
     
     constructor( template, data ) {
@@ -46,7 +48,7 @@ class Compiler {
         let directiveName;
         let attributeArgument;
 
-        if( !attributes ) return false;
+        if( node.hasAttributes() && this.prioritize( node ) ) return;
 
         [].slice.call( attributes ).map( ( attribute ) => {
 
@@ -100,6 +102,42 @@ class Compiler {
             name: 'text',
             value: textParser( node.textContent ),
         }, this.data );
+
+    }
+
+    prioritize( node ) {
+
+        let attributeValue;
+        let directiveName;
+
+        for ( let i = 0; i < priorities.length; i++ ) {
+            
+            directiveName = priorities[i];
+            attributeValue = node.getAttribute(`${ornnPrefix}${directiveName}`);
+
+            if (attributeValue) {
+                
+                attributeValue = attributeValue.trim();
+                
+                if (!attributeValue) return false;
+    
+                node.removeAttribute(`${ornnPrefix}${directiveName}`);
+                
+                new Directive({
+                    node,
+                    name: directiveName,
+                    value: attributeValue,
+                });
+    
+                return true;
+
+            } else {
+
+                return false;
+
+            }
+
+        }
 
     }
 
