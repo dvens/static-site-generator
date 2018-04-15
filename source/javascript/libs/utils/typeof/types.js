@@ -1,3 +1,5 @@
+import each from '../each';
+
 const list = [
     'Null',
     'Undefined',
@@ -27,10 +29,12 @@ function generateTypesObject() {
 
     const obj = {};
 
-    for (let type of list) {
+    each( list, ( type ) => {
+       
         obj[`[object ${type}]`] = type;
-    }
 
+    });
+    
     return obj;
 
 }

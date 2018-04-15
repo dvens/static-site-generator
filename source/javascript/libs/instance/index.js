@@ -1,18 +1,15 @@
 import extend from '../utils/extend';
 
+import defaultOptions from './default-options';
 import { initializeState } from './state';
 import { initializeRender } from './render';
 
-const defaultOptions = {
-    data: {}
-};
-
-class Templatize {
+class Ornn {
 
     constructor( options ) {
 
-        if( !( this instanceof Templatize ) ) {
-            console.warn('Templatize is a constructor and should be called with the `new` keyword')
+        if( !( this instanceof Ornn ) ) {
+            console.warn('Ornn is a constructor and should be called with the `new` keyword')
         }
 
         this._init( options );
@@ -29,4 +26,4 @@ class Templatize {
 
 }
 
-export default Templatize;
+export default Ornn;

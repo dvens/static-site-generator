@@ -9,15 +9,15 @@
 
     <div class="app">
         <div class="profile">
-            <div class="avatar">
+            <div o-bind:class="avatar">
                 <img :src="user.avatar" alt="{{ user.firstName }}">
             </div>
-            <p><span :text="fullName"></span></p>
+            <p><span o-bind:text="fullName"></span></p>
         </div>
-        <ul class="moments" :if="moments.length">
-            <li :each="moment in moments" :show="moment.show">
+        <ul class="moments" o-if="moments.length">
+            <li o-for="moment in moments" o-show="moment.show">
                 {{ moment.content }}
-                <p><span :text="fullName"></span></p>
+                <p><span o-bind:text="fullName"></span></p>
             </li>
 
         </ul>

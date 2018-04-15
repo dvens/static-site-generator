@@ -18,8 +18,6 @@ const typeOf = ( value ) => {
     const str = Object.prototype.toString.call( value );
     const type = strings[str];
 
-    console.log( type );
-
     return type === 'Number' && isNaN( value ) ? 'NaN' : type;
 
 }

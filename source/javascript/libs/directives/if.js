@@ -1,11 +1,11 @@
-import configure from '../configure';
+import { ornnPrefix } from '../constants';
 
 export default {
-    beforeUpdate() {
-        this.holder = document.createComment(`${configure.identifier.bind}${this.name}`);
+    bind() {
+        this.holder = document.createComment(`${ornnPrefix}${this.name}`);
         this.node.parentNode.replaceChild(this.holder, this.node);
     },
     update(show) {
         if (show) this.holder.parentNode.replaceChild(this.node, this.holder);
-    },
+    }
 };

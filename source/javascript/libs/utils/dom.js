@@ -1,10 +1,6 @@
 /*
  * DOM helper functions
- * hasClass( elem, 'class' )
- * addClass( elem, 'class' )
- * removeClass( elem, 'class' )
- * toggleClass( elem, 'class' )
- */
+*/
 
 const hasClassList = 'classList' in document.documentElement;
 
@@ -14,6 +10,12 @@ function classReg( className ) {
 
 }
 
+/**
+ * Check if element has a certain class
+ * hasClass( elem, 'class' );
+ * @function 
+ * @returns { Boolean } 
+*/
 export const hasClass = ( element, c ) => {
     
     if( hasClassList) {
@@ -23,6 +25,12 @@ export const hasClass = ( element, c ) => {
     }
 
 };
+
+/**
+ * Adds classes to an element
+ * addClass( elem, 'class' );
+ * @function 
+*/
 
 export const addClass = ( element, c ) => {
     
@@ -34,6 +42,11 @@ export const addClass = ( element, c ) => {
 
 };
 
+/**
+ * Removes classes of an element
+ * removeClass( elem, 'class' );
+ * @function 
+*/
 export const removeClass = ( element, c ) => {
 
     if( hasClassList) {
@@ -44,6 +57,11 @@ export const removeClass = ( element, c ) => {
 
 };
 
+/**
+ * Togggles classes of an element
+ * toggleClass( elem, 'class' );
+ * @function 
+ */
 export const toggleClass = ( element, c ) => {
 
     if( hasClassList) { 

@@ -1,2 +1,2 @@
-import Templatize from './instance/';
-export default Templatize;
+import Ornn from './instance/';
+export default Ornn;
