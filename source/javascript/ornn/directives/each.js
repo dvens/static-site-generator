@@ -1,19 +1,19 @@
-import configure from '../configure';
-import colon from '../index';
+import { ornnPrefix } from '../constants';
+import Ornn from '../index';
 
 export default {
-    beforeUpdate() {
-        this.holder = document.createComment(`${configure.identifier.bind}${this.name}`);
-        this.node.parentNode.replaceChild(this.holder, this.node);
+    bind() {
+        this.holder = document.createComment(`${ornnPrefix}${this.name}`);
+        this.node.parentNode.replaceChild( this.holder, this.node );
 
         // parse alias
         this.itemName = `item`;
         this.indexName = `index`;
-        this.dataName = this.expression;
+        this.dataName = this.value;
 
-        if (this.expression.indexOf(' in ') != -1) {
+        if (this.value.indexOf(' in ') != -1) {
             const bracketRE = /\(((?:.|\n)+?)\)/g;
-            const [item, data] = this.expression.split(' in ');
+            const [item, data] = this.value.split(' in ');
             let matched = null;
 
             if (matched = bracketRE.exec(item)) {
@@ -27,24 +27,29 @@ export default {
             this.dataName = data.trim();
         }
 
-        this.expression = this.dataName;
+        this.value = this.dataName;
     },
-    update(data) {
+    update( data ) {
+
         if (data && !Array.isArray(data)) return;
 
         const fragment = document.createDocumentFragment();
 
         data.map((item, index) => {
-            const co = colon({
-                template: this.node.cloneNode(true),
+
+            const component = new Ornn({
+                el: this.node.cloneNode( true ),
                 data: {
                     [this.itemName]: item,
-                    [this.indexName]: index,
-                },
+                    [this.indexName]: index
+                }
             });
-            fragment.appendChild(co.options.template);
+
+            fragment.appendChild( component.$template );
+
         });
 
-        this.holder.parentNode.replaceChild(fragment, this.holder);
+        this.holder.parentNode.replaceChild( fragment, this.holder );
+
     },
 };

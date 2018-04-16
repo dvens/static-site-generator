@@ -1,10 +1,10 @@
 import { defaultTagRegex } from '../../constants';
 
 /**
- * Parses string 
+ * Parses string
  * <p>{{ test }}</p> > // TODO: place outcome
  * Inspired by: https://github.com/vuejs/vue/blob/dev/src/compiler/parser/text-parser.js
- * @function 
+ * @function
  * @returns { String }
 */
 
@@ -12,7 +12,7 @@ export const textParser = ( text ) => {
 
     const regex = defaultTagRegex;
 
-    if( !regex.test( text ) ) return;
+    if( !regex.test( text ) ) return JSON.stringify( text );
 
     const tokens = [];
     let lastIndex = regex.lastIndex = 0;
@@ -20,12 +20,12 @@ export const textParser = ( text ) => {
     let match;
 
     while ( match = regex.exec( text ) ) {
-        
+
         index = match.index;
 
         if ( index > lastIndex ) {
-            
-            tokens.push( 
+
+            tokens.push(
                 JSON.stringify( text.slice(lastIndex, index ) )
             );
 
@@ -37,8 +37,8 @@ export const textParser = ( text ) => {
     }
 
     if ( lastIndex < text.length ) {
-        
-        tokens.push( 
+
+        tokens.push(
             JSON.stringify( text.slice(lastIndex) )
         );
 

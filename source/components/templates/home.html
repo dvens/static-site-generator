@@ -13,25 +13,13 @@
                 <img :src="user.avatar" alt="{{ user.firstName }}">
             </div>
             <p><span :text="fullName"></span></p>
+            <span :class="{ active: isActive }"></span>
+            <span :class="[{ active: isActive }, { 'is-fixed': isFixed }]"></span>
+            <span :style="{ color: activeColor, fontSize: fontSize + 'px' }"></span>
+            <span :style="[styleObject1, styleObject2]"></span>
         </div>
         <ul class="moments" :if="moments.length">
-            <li :for="moment in moments" :show="moment.show">
-                {{ moment.content }}
-                <p><span :text="fullName"></span></p>
-            </li>
-
-        </ul>
-    </div>
-
-    <div class="app2">
-        <div class="profile">
-            <div :class="avatar">
-                <img :src="user.avatar" alt="{{ user.firstName }}">
-            </div>
-            <p><span :text="fullName"></span></p>
-        </div>
-        <ul class="moments" :if="moments.length">
-            <li :each="moment in moments" :show="moment.show">
+            <li o-for="moment in moments" :show="moment.show">
                 {{ moment.content }}
                 <p><span :text="fullName"></span></p>
             </li>
