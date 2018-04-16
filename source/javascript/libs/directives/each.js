@@ -30,21 +30,26 @@ export default {
         this.value = this.dataName;
     },
     update( data ) {
+
         if (data && !Array.isArray(data)) return;
 
         const fragment = document.createDocumentFragment();
 
         data.map((item, index) => {
-            const co = Ornn({
-                template: this.node.cloneNode(true),
+
+            const component = new Ornn({
+                el: this.node.cloneNode( true ),
                 data: {
                     [this.itemName]: item,
-                    [this.indexName]: index,
-                },
+                    [this.indexName]: index
+                }
             });
-            fragment.appendChild(co.options.template);
+
+            fragment.appendChild( component.$template );
+
         });
 
-        this.holder.parentNode.replaceChild(fragment, this.holder);
+        this.holder.parentNode.replaceChild( fragment, this.holder );
+
     },
 };

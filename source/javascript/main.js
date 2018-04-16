@@ -1,8 +1,6 @@
 'use strict';
 
 import Ornn from './libs';
-import colon from './example/src';
-
 export default class main {
 
     /**
@@ -14,6 +12,17 @@ export default class main {
 
 
         const data = {
+            isActive: true,
+            isFixed: true,
+            activeColor: '#42b983',
+            fontSize: 16,
+            styleObject1: {
+                color: '#42b983',
+                backgroundSize: 'cover',
+            },
+            styleObject2: {
+                fontSize: 16 + 'px',
+            },
             user: {
                 avatar: `./images/avatar.jpg`,
                 firstName: `Just`,
@@ -31,16 +40,6 @@ export default class main {
             }],
         };
 
-        colon({
-            template: document.querySelector('.app2'),
-            data,
-            computed: {
-                fullName() {
-                    return this.user.firstName + this.user.lastName;
-                },
-            },
-        });
-
         const products = new Ornn({
             el: document.querySelector( '.app' ),
             data,
@@ -50,11 +49,8 @@ export default class main {
                 }
             }
         });
-
-        console.log( products );
-
     }
-    
+
 }
 
 main.init();
