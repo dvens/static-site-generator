@@ -1,20 +1,25 @@
-/**
- * walk dom element
- *
- * @param {DOM}   el
- * @param {Function}   action
- * @param {Function} done
- */
-export default function walk(el, action, done) {
-    const nodes = el.childNodes && [].slice.call(el.childNodes);
+export default function domWalker( nodes, callback ) {
 
-    done = done || function () {};
-    action = action || function () {};
+    console.log( nodes );
 
-    function next(skip) {
-        if (skip || nodes.length === 0) return done();
-        walk(nodes.shift(), action, next);
+    if ( !('length' in nodes) ) nodes = [nodes];
+
+    nodes = [].slice.call( nodes );
+
+    while( nodes.length ) {
+
+        const node = nodes.shift();
+        const ret = callback( node );
+
+        if( ret ) return ret;
+
+        
+        if ( node.childNodes && node.childNodes.length ) {
+            
+            nodes = [].slice.call( node.childNodes ).concat( nodes);
+            
+        }
+
     }
 
-    action(el, next);
 }

@@ -32,8 +32,17 @@ class Compiler {
 
         domWalker( this.template, ( node ) => {
 
-            if( isElementNode( node ) ) this.compileElementNode( node );
-            if( isTextNode( node ) ) this.compileTextNode( node );
+            console.log( node );
+
+            if( isElementNode( node ) ) {
+                
+                this.compileElementNode( node );
+
+            } else if( isTextNode( node ) ) {
+                
+                this.compileTextNode( node );
+
+            }
 
         });
 

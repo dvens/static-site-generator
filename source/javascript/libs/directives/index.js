@@ -31,7 +31,7 @@ export default class Directive {
         Object.assign(this, options);
         Object.assign(this, directives[this.name]);
 
-        console.log( this );
+        //console.log( this );
 
         // this.bind && this.bind();
         // this.update && this.update( generate( this.value )( data ) );

@@ -9,9 +9,9 @@ export default class Directive {
         Object.assign(this, options);
         Object.assign(this, directives[this.name]);
 
-        console.log( this );
+        //console.log( this );
 
-        this.beforeUpdate && this.beforeUpdate();
-        this.update && this.update(generate(this.expression)(this.compile.data));
+        // this.beforeUpdate && this.beforeUpdate();
+        // this.update && this.update(generate(this.expression)(this.compile.data));
     }
 }

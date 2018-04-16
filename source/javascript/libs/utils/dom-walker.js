@@ -1,5 +1,7 @@
 export default function domWalker( nodes, callback ) {
 
+    console.log( nodes );
+
     if ( !('length' in nodes) ) nodes = [nodes];
 
     nodes = [].slice.call( nodes );
