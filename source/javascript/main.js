@@ -1,6 +1,6 @@
 'use strict';
 
-import Ornn from './libs';
+import Ornn from './ornn';
 export default class main {
 
     /**
