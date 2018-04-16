@@ -33,7 +33,6 @@ class Compiler {
 
         this.initWalker( _template );
 
-        _template = null;
     }
 
     initWalker( template ) {
@@ -41,22 +40,12 @@ class Compiler {
         domWalker( template, ( node ) => {
 
             if( isElementNode( node ) ) {
-
-                this.compileElementNode( node );
-
-            } else if( isTextNode( node ) ) {
-
-<<<<<<< HEAD:source/javascript/libs/compile/compile.js
-            console.log( node );
-
-            if( isElementNode( node ) ) {
                 
                 this.compileElementNode( node );
 
             } else if( isTextNode( node ) ) {
                 
-=======
->>>>>>> abe27674a72b1cb069c6878b2d85274d9cd81f0c:source/javascript/ornn/compile/index.js
+                
                 this.compileTextNode( node );
 
             }
