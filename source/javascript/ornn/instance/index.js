@@ -14,7 +14,7 @@ class Ornn {
 
     }
 
-    _init( options ) {
+    _init() {
 
         initializeState( this );
         initializeRender( this );

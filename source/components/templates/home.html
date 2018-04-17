@@ -6,25 +6,24 @@
 {% block content %}
 
     <h1>Woonenergie product test</h1>
-
+    {% raw %}
     <div class="app">
-        <div class="profile">
-            <div :class="avatar">
-                <img :src="user.avatar" alt="{{ user.firstName }}">
-            </div>
-            <p><span :text="fullName"></span></p>
-            <span :class="{ active: isActive }"></span>
-            <span :class="[{ active: isActive }, { 'is-fixed': isFixed }]"></span>
-            <span :style="{ color: activeColor, fontSize: fontSize + 'px' }"></span>
-            <span :style="[styleObject1, styleObject2]"></span>
-        </div>
+        <img alt="{{ user.firstName }}" :src="user.avatar">
+        <p>{{ user.firstName }}</p>
+        <p><span :text="fullName"></span></p>
+        <span :class="{ active: isActive }"></span>
+        <span :class="[{ active: isActive }, { 'is-fixed': isFixed }]"></span>
+        <span :style="{ color: activeColor, fontSize: fontSize + 'px' }"></span>
+        <span :style="[styleObject1, styleObject2]"></span>
         <ul class="moments" :if="moments.length">
             <li o-for="moment in moments" :show="moment.show">
                 {{ moment.content }}
                 <p><span :text="fullName"></span></p>
             </li>
-
         </ul>
+
     </div>
+
+    {% endraw %}
 
 {% endblock %}

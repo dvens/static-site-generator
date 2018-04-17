@@ -38,8 +38,6 @@ function createComputedSetterGetter( component, key, getter, setter ) {
 export function initializeState( component ) {
 
     const computed = component.options.computed;
-    const data = component.options.data;
-
     if( computed ) intializeComputed( component.options, computed );
 
 }

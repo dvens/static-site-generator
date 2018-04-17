@@ -1,4 +1,4 @@
-import { strings, types } from './types'
+import { strings } from './types'
 
 /**
  * Checks the type of a object/array etc.

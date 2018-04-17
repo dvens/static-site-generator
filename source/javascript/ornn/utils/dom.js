@@ -5,7 +5,7 @@
 const hasClassList = 'classList' in document.documentElement;
 
 function classReg( className ) {
-    
+
     return new RegExp(`(^|\\s+)'${className}(\\s+|$)`);
 
 }
@@ -13,11 +13,11 @@ function classReg( className ) {
 /**
  * Check if element has a certain class
  * hasClass( elem, 'class' );
- * @function 
- * @returns { Boolean } 
+ * @function
+ * @returns { Boolean }
 */
 export const hasClass = ( element, c ) => {
-    
+
     if( hasClassList) {
         element.classList.contains( c );
     } else {
@@ -29,11 +29,11 @@ export const hasClass = ( element, c ) => {
 /**
  * Adds classes to an element
  * addClass( elem, 'class' );
- * @function 
+ * @function
 */
 
 export const addClass = ( element, c ) => {
-    
+
     if( hasClassList) {
         element.classList.add( c );
     } else {
@@ -45,14 +45,14 @@ export const addClass = ( element, c ) => {
 /**
  * Removes classes of an element
  * removeClass( elem, 'class' );
- * @function 
+ * @function
 */
 export const removeClass = ( element, c ) => {
 
     if( hasClassList) {
         element.classList.remove( c );
     } else {
-        elem.className = element.className.replace( classReg( c ), ' ' );
+        element.className = element.className.replace( classReg( c ), ' ' );
     }
 
 };
@@ -60,11 +60,11 @@ export const removeClass = ( element, c ) => {
 /**
  * Togggles classes of an element
  * toggleClass( elem, 'class' );
- * @function 
+ * @function
  */
 export const toggleClass = ( element, c ) => {
 
-    if( hasClassList) { 
+    if( hasClassList) {
         element.classList.toggle( c );
     } else {
         const fn = hasClass( element, c ) ? removeClass : addClass;

@@ -8,18 +8,16 @@ import { defaultTagRegex } from '../../constants';
  * @returns { String }
 */
 
-export const textParser = ( text ) => {
+export const textParser = ( text, force = false ) => {
 
-    const regex = defaultTagRegex;
-
-    if( !regex.test( text ) ) return JSON.stringify( text );
+    if( !defaultTagRegex.test( text ) && !force ) return JSON.stringify( text );
 
     const tokens = [];
-    let lastIndex = regex.lastIndex = 0;
+    let lastIndex = defaultTagRegex.lastIndex = 0;
     let index;
     let match;
 
-    while ( match = regex.exec( text ) ) {
+    while ( match = defaultTagRegex.exec( text ) ) {
 
         index = match.index;
 

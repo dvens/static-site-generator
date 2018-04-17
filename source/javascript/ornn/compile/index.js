@@ -8,10 +8,8 @@ import defaultOptions from '../instance/default-options';
 
 import {
     bindRegex,
-    argRegex,
     dirRegex,
     defaultTagRegex,
-    expressionRegex,
     ornnPrefix
 } from '../constants';
 
@@ -61,7 +59,6 @@ class Compiler {
         let attributeName;
         let attributeValue;
         let directiveName;
-        let attributeArgument;
 
         if( node.hasAttributes() && this.prioritize( node ) ) return;
 
@@ -98,7 +95,7 @@ class Compiler {
                 new Directive({
                     node,
                     name: 'attribute',
-                    value: textParser( attributeValue ),
+                    value: textParser( attributeValue, true ),
                     attributeName
                 }, this.data );
 

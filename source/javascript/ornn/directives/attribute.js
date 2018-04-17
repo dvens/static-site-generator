@@ -1,6 +1,6 @@
 export default {
     update(value) {
-        this.node.setAttribute(this.attrName, value);
+        this.node.setAttribute(this.attributeName, value);
     }
 };
 

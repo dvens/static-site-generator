@@ -5,7 +5,7 @@ const globals = [
     'escape', 'eval', 'isFinite', 'Number', 'String', 'parseFloat', 'parseInt',
 ];
 
-export function generate(expression) {
+export function generate( expression ) {
 
     const dependencies = extractDependencies(expression);
     let dependenciesCode = '';
@@ -15,10 +15,12 @@ export function generate(expression) {
     return new Function(`data`, `${dependenciesCode}return ${expression};`);
 }
 
-export function extractDependencies(expression) {
+export function extractDependencies( expression ) {
+
     const dependencies = [];
 
     expression.replace(dependencyRE, (match, dependency) => {
+
         if (
             dependency !== undefined &&
             dependencies.indexOf(dependency) === -1 &&
@@ -26,6 +28,7 @@ export function extractDependencies(expression) {
         ) {
             dependencies.push(dependency);
         }
+
     });
 
     return dependencies;

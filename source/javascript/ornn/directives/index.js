@@ -22,7 +22,7 @@ import { generate } from '../compile/generate';
 
 export default class Directive {
 
-    constructor(options = {}, data ) {
+    constructor( options = {}, data ) {
 
         if ( options.name === 'if' ) options.name = `IF`;
         if ( options.name === 'class' ) options.name = `clus`;

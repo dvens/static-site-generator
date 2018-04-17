@@ -1,6 +1,5 @@
 import typeOf from '../utils/typeof';
 import htmlStringToNodeList from '../utils/html-string-to-node-list';
-import Compiler from './compile';
 
 export const getTemplate = ( element ) => {
 
