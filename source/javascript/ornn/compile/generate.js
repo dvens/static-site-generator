@@ -12,10 +12,26 @@ export function generate(expression) {
 
     dependencies.map(dependency => dependenciesCode += `var ${dependency} = data["${dependency}"]; `);
 
-    return new Function(`data`, `${dependenciesCode}return ${expression};`);
+    const code = `
+        ${dependenciesCode};
+
+        try {
+            
+            return ${expression};
+
+        } catch( e ) {
+        
+            return false;
+
+        }
+    `;
+    
+    return new Function(`data`, code );
+    
 }
 
 export function extractDependencies(expression) {
+    
     const dependencies = [];
 
     expression.replace(dependencyRE, (match, dependency) => {

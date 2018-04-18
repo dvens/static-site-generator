@@ -19,7 +19,7 @@ import {
 const isElementNode = ( node ) => node.nodeType === 1;
 const isTextNode = ( node ) => node.nodeType === 3;
 
-const priorities = ['for'];
+const priorities = ['for', 'if', 'text'];
 
 class Compiler {
 
@@ -124,7 +124,6 @@ class Compiler {
 
         let attributeValue;
         let directiveName;
-
 
         for ( let i = 0; i < priorities.length; i++ ) {
 

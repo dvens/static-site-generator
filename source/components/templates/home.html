@@ -21,7 +21,7 @@
         <ul class="moments" :if="moments.length">
             <li o-for="moment in moments" :show="moment.show">
                 {{ moment.content }}
-                <p><span :text="fullName"></span></p>
+                <p><span :if="test.fullname" :text="test.fullName"></span></p>
             </li>
 
         </ul>

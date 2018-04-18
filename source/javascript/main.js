@@ -20,6 +20,7 @@ export default class main {
                 color: '#42b983',
                 backgroundSize: 'cover',
             },
+            test: null,
             styleObject2: {
                 fontSize: 16 + 'px',
             },
@@ -49,6 +50,22 @@ export default class main {
                 }
             }
         });
+
+        function checkReferenceError( item ) {
+            
+            try {
+            
+                return test.timing.test;
+
+            } catch( e ) {
+                
+                console.log( e instanceof ReferenceError );
+                return false;
+
+            }
+
+        }
+
     }
 
 }
