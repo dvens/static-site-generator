@@ -1,8 +1,6 @@
 import typeOf from '../utils/typeof';
 import htmlStringToNodeList from '../utils/html-string-to-node-list';
 
-import { expressionRegex } from '../constants';
-
 export const getTemplate = ( element ) => {
 
     let template;
@@ -30,28 +28,3 @@ export const getTemplate = ( element ) => {
     return template;
 
 };
-
-export function getTemplateExpression( template ) {
-
-    const dependencies = getTemplateDependencies( template );
-    return dependencies;
-
-}
-
-function getTemplateDependencies( template ) {
-
-    const dependencies = [];
-
-    template.replace( expressionRegex, ( match, reference ) => {
-
-        if( reference !== undefined && dependencies.indexOf( reference ) === -1 ) {
-
-            dependencies.push( reference );
-
-        }
-
-    });
-
-    return dependencies;
-
-}

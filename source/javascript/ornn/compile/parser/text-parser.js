@@ -1,4 +1,5 @@
-import { defaultTagRegex } from '../../constants';
+import { defaultFilterRegex, defaultTagRegex } from '../../constants';
+import { filterParser } from './index';
 
 /**
  * Parses string
@@ -10,14 +11,16 @@ import { defaultTagRegex } from '../../constants';
 
 export const textParser = ( text, force = false ) => {
 
-    if( !defaultTagRegex.test( text ) && !force ) return JSON.stringify( text );
+    if( !defaultTagRegex.test( text ) && !force ) return { expression:  JSON.stringify( text ), filterName: null };
 
     const tokens = [];
+    let filterName = null;
     let lastIndex = defaultTagRegex.lastIndex = 0;
+    let filter;
     let index;
     let match;
 
-    while ( match = defaultTagRegex.exec( text ) ) {
+    while ( ( match = defaultTagRegex.exec( text ) ) ) {
 
         index = match.index;
 
@@ -29,7 +32,19 @@ export const textParser = ( text, force = false ) => {
 
         }
 
-        tokens.push( match[1].trim() );
+        if( defaultFilterRegex.test( match[1].trim() ) ) {
+
+            filter = filterParser( match[1].trim() );
+
+            filterName = filter.filterName;
+            tokens.push( filter.attrValue );
+
+        } else {
+
+            tokens.push( match[1].trim() );
+
+        }
+
         lastIndex = index + match[0].length;
 
     }
@@ -42,6 +57,9 @@ export const textParser = ( text, force = false ) => {
 
     }
 
-    return tokens.join('+');
+    return {
+        expression: tokens.join('+'),
+        filterName
+    };
 
 };

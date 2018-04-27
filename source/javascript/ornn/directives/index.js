@@ -22,7 +22,7 @@ import { generate } from '../compile/generate';
 
 export default class Directive {
 
-    constructor( options = {}, data ) {
+    constructor( options = {}, data, filters ) {
 
         if ( options.name === 'if' ) options.name = `IF`;
         if ( options.name === 'class' ) options.name = `clus`;
@@ -31,8 +31,14 @@ export default class Directive {
         Object.assign(this, options);
         Object.assign(this, directives[this.name]);
 
+        // TODO: Create better filtername error handler ( current error handler will break the templating )
+
         this.bind && this.bind();
-        this.update && this.update( generate( this.value )( data ) );
+        this.update && this.update(
+            ( options.filterName && filters[ options.filterName ] ) ?
+                filters[ options.filterName ]( generate( this.value )( data ) ) :
+                generate( this.value )( data )
+        );
 
     }
 

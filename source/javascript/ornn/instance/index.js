@@ -10,14 +10,22 @@ class Ornn {
         }
 
         this.options = options;
-        this._init( options );
+        this._init();
+
+    }
+
+    static filter( name, func ) {
+
+        Ornn.filters = Object.assign({}, Ornn.filters, {
+            [name]: func
+        });
 
     }
 
     _init() {
 
         initializeState( this );
-        initializeRender( this );
+        initializeRender( this, Ornn.filters );
 
     }
 

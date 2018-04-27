@@ -1,7 +1,8 @@
 import extend from '../utils/extend';
 import domWalker from '../utils/dom-walker';
 import Directive from '../directives';
-import { textParser } from './parser';
+import { textParser, filterParser } from './parser';
+
 import { getTemplate } from './template';
 
 import defaultOptions from '../instance/default-options';
@@ -10,14 +11,14 @@ import {
     bindRegex,
     dirRegex,
     defaultTagRegex,
-    ornnPrefix
+    ornnPrefix,
+    defaultFilterRegex
 } from '../constants';
-
 
 const isElementNode = ( node ) => node.nodeType === 1;
 const isTextNode = ( node ) => node.nodeType === 3;
 
-const priorities = ['for'];
+const priorities = ['for', 'if'];
 
 class Compiler {
 
@@ -25,13 +26,17 @@ class Compiler {
 
         let _template = getTemplate( template );
 
-        this.options = extend( defaultOptions, options );
+        this.options = extend( true, defaultOptions, options );
+
         this.data = this.options.data;
+        this.filters = this.options.filters;
+
         this.template = _template;
 
         this.initWalker( _template );
 
         _template = null;
+
     }
 
     initWalker( template ) {
@@ -56,9 +61,12 @@ class Compiler {
 
         const attributes = node.attributes;
 
+        let filterName = null;
         let attributeName;
         let attributeValue;
         let directiveName;
+        let parser;
+        let filter;
 
         if( node.hasAttributes() && this.prioritize( node ) ) return;
 
@@ -67,7 +75,15 @@ class Compiler {
             attributeName = attribute.name;
             attributeValue = attribute.value;
 
-            // TODO: Create on-click handler
+            if( defaultFilterRegex.test( attributeValue ) ) {
+
+                filter = filterParser( attributeValue );
+
+                attributeValue = filter.attrValue;
+                filterName = filter.filterName;
+
+            }
+
             if( bindRegex.test( attributeName ) ) {
 
                 directiveName = attributeName.replace( bindRegex, '');
@@ -83,8 +99,9 @@ class Compiler {
                 new Directive({
                     node,
                     name: directiveName,
-                    value: attributeValue
-                }, this.data );
+                    value: attributeValue,
+                    filterName
+                }, this.data, this.filters );
 
                 node.removeAttribute( attributeName );
 
@@ -92,12 +109,15 @@ class Compiler {
 
                 if( !defaultTagRegex.test( attributeValue ) || attributeValue.trim() === '' ) return;
 
+                parser = textParser( attributeValue, true );
+
                 new Directive({
                     node,
                     name: 'attribute',
-                    value: textParser( attributeValue, true ),
-                    attributeName
-                }, this.data );
+                    value: parser.expression,
+                    attributeName,
+                    filterName: parser.filterName
+                }, this.data, this.filters );
 
             }
 
@@ -109,11 +129,14 @@ class Compiler {
 
         if( node.textContent.trim() === '' ) return;
 
+        let parser = textParser( node.textContent );
+
         new Directive({
             node,
             name: 'text',
-            value: textParser( node.textContent ),
-        }, this.data );
+            value: parser.expression,
+            filterName: parser.filterName
+        }, this.data, this.filters );
 
     }
 
@@ -121,7 +144,6 @@ class Compiler {
 
         let attributeValue;
         let directiveName;
-
 
         for ( let i = 0; i < priorities.length; i++ ) {
 
@@ -141,7 +163,7 @@ class Compiler {
                     node,
                     name: directiveName,
                     value: attributeValue,
-                }, this.data );
+                }, this.data, this.filters );
 
                 return true;
 

@@ -16,7 +16,7 @@ export default {
             const [item, data] = this.value.split(' in ');
             let matched = null;
 
-            if (matched = bracketRE.exec(item)) {
+            if ( ( matched = bracketRE.exec(item) ) ) {
                 const [item, index] = matched[1].split(',');
                 index ? this.indexName = index.trim() : '';
                 this.itemName = item.trim();

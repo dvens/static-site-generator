@@ -1,29 +1,101 @@
-/**
- * Deep object extending
- * https://stackoverflow.com/questions/14843815/recursive-deep-extend-assign-in-underscore-js
- * @function
- * @returns { obj }
- */
-const deepObjectExtend = ( target, source ) => {
+import typeOf from '../utils/typeof';
 
-    for ( let prop in source ) {
+export function isPlainObject(object) {
 
-        if (source.hasOwnProperty(prop)) {
+    const class2type = {};
+    const toString = class2type.toString;
+    const hasOwn = class2type.hasOwnProperty;
+    const fnToString = hasOwn.toString;
+    const ObjectFunctionString = fnToString.call(Object);
 
-            if ( target[prop] && typeof source[prop] === 'object' ) {
+    let prototype;
+    let ctor;
 
-                deepObjectExtend( target[prop], source[prop] );
+    if ( !object || toString.call( object ) !== '[object Object]' ) return false;
 
-            } else {
+    prototype = Object.getPrototypeOf( object );
 
-                target[prop] = source[prop];
+    if ( !prototype ) return true;
 
-            }
-        }
-    }
+    ctor = hasOwn.call( prototype, 'constructor' ) && prototype.constructor;
 
-    return target;
+    return typeof ctor === 'function' && fnToString.call( ctor ) === ObjectFunctionString;
 
 }
 
-export default deepObjectExtend;
+export default function extend() {
+
+    let options;
+    let name;
+    let clone;
+    let copy;
+    let source;
+    let copyIsArray;
+
+    let target = arguments[0] || {};
+    let i = 1;
+    let length = arguments.length;
+    let deep = false;
+
+    if ( typeof target === 'boolean' ) {
+
+        deep = target;
+        target = arguments[i] || {};
+        i++;
+
+    }
+
+    if ( typeof target !== 'object' && typeOf(target) !== 'Function' ) {
+        target = {};
+    }
+
+    if ( i === length ) {
+        target = this;
+        i--;
+    }
+
+    for (; i < length; i++) {
+        //
+        if ( (options = arguments[i]) !== null ) {
+            // for in source object
+            for ( name in options ) {
+
+                source = target[name];
+                copy = options[name];
+
+                if ( target == copy ) {
+                    continue;
+                }
+
+                // deep clone
+                if ( deep && copy && ( isPlainObject( copy ) || ( copyIsArray = Array.isArray( copy ) ) ) ) {
+                    // if copy is array
+                    if ( copyIsArray ) {
+
+                        copyIsArray = false;
+                        // if is not array, set it to array
+                        clone = source && Array.isArray(source) ? source : [];
+
+                    } else {
+
+                        // if copy is not a object, set it to object
+                        clone = source && isPlainObject(source) ? source : {};
+
+                    }
+
+                    target[name] = extend(deep, clone, copy);
+
+                } else if (copy !== undefined) {
+
+                    target[name] = copy;
+
+                }
+
+            }
+
+        }
+
+    }
+
+    return target;
+}

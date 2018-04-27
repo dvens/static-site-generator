@@ -23,6 +23,9 @@ export default class main {
             styleObject2: {
                 fontSize: 16 + 'px',
             },
+            fullName: null,
+            gasValue: false,
+            test: null,
             user: {
                 avatar: `./images/avatar.jpg`,
                 firstName: `Just`,
@@ -40,15 +43,15 @@ export default class main {
             }],
         };
 
-        const products = new Ornn({
-            el: document.querySelector( '.app' ),
-            data,
-            computed: {
-                fullName() {
-                    return this.user.firstName + this.user.lastName;
+            const products = new Ornn({
+                el: document.querySelector( '.app' ),
+                data,
+                computed: {
+                    fullName() {
+                        return this.user.firstName + this.user.lastName;
+                    }
                 }
-            }
-        });
+            });
     }
 
 }
