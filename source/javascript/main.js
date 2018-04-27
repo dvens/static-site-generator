@@ -10,7 +10,6 @@
 //      */
 //     static init() {
 
-
 //         const data = {
 //             isActive: true,
 //             isFixed: true,

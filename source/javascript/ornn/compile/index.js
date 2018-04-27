@@ -18,7 +18,11 @@ import {
 const isElementNode = ( node ) => node.nodeType === 1;
 const isTextNode = ( node ) => node.nodeType === 3;
 
+<<<<<<< HEAD
 const priorities = ['for', 'if'];
+=======
+const priorities = ['for', 'if', 'text'];
+>>>>>>> 0d63eae30c99e8bbc439b874dd1c01070053bdaa
 
 class Compiler {
 
@@ -35,8 +39,11 @@ class Compiler {
 
         this.initWalker( _template );
 
+<<<<<<< HEAD
         _template = null;
 
+=======
+>>>>>>> 0d63eae30c99e8bbc439b874dd1c01070053bdaa
     }
 
     initWalker( template ) {
@@ -44,11 +51,12 @@ class Compiler {
         domWalker( template, ( node ) => {
 
             if( isElementNode( node ) ) {
-
+                
                 this.compileElementNode( node );
 
             } else if( isTextNode( node ) ) {
-
+                
+                
                 this.compileTextNode( node );
 
             }

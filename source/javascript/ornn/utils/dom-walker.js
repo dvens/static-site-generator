@@ -10,7 +10,6 @@ export default function domWalker( nodes, callback ) {
         const ret = callback( node );
 
         if( ret ) return ret;
-
         
         if ( node.childNodes && node.childNodes.length ) {
             

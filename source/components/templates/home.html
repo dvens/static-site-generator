@@ -17,6 +17,14 @@
                 &euro; <span :text="tariff.gasTariffExtended.tariff"></span> x <span :text="gasValue"></span> m³
             </span>
         </div>
+<<<<<<< HEAD
+=======
+        <ul class="moments" :if="moments.length">
+            <li o-for="moment in moments" :show="moment.show">
+                {{ moment.content }}
+                <p><span :if="test.fullname" :text="test.fullName"></span></p>
+            </li>
+>>>>>>> 0d63eae30c99e8bbc439b874dd1c01070053bdaa
 
     </div>
 
